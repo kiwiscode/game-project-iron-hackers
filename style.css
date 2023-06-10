@@ -1,0 +1,136 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+
+#nav-list {
+  display: flex;
+  justify-content: center;
+}
+
+#nav-list ul {
+  list-style: none;
+}
+
+#nav-list ul li {
+  float: left;
+  width: 200px;
+  height: 40px;
+  opacity: 0.9;
+  text-align: center;
+  font-size: 27px;
+}
+
+#nav-list ul li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+/* for changing " hover color in nav-bar" */
+/* #nav-list ul li a:hover {
+} */
+
+#nav-list ul li ul li {
+  display: none;
+}
+
+#nav-list ul li:hover ul li {
+  display: block;
+}
+
+#info-screen {
+  border-style: solid;
+  height: 770px;
+  margin: 20px;
+  margin-top: 105px;
+  display: flex;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.display {
+  display: none;
+}
+
+.raver-history {
+  width: 400px;
+  margin: 10px;
+}
+
+.raver-history h1 {
+  margin-top: 20px;
+}
+
+.raver-history li {
+  margin-left: 0px;
+  text-decoration: none;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.raver-history li a {
+  text-decoration: none;
+  color: black;
+}
+
+.vegan-history {
+  width: 400px;
+  margin: 10px;
+}
+.vegan-history h1 {
+  margin-top: 20px;
+}
+.vegan-history li {
+  margin-left: 0px;
+  text-decoration: none;
+  list-style: none;
+  margin-top: 10px;
+}
+.vegan-history li a {
+  text-decoration: none;
+  color: black;
+}
+
+.iron-hacker-history {
+  width: 400px;
+  margin: 10px;
+}
+.iron-hacker-history h1 {
+  margin-top: 20px;
+}
+.iron-hacker-history li {
+  margin-left: 0px;
+  text-decoration: none;
+  list-style: none;
+  margin-top: 10px;
+}
+.iron-hacker-history li a {
+  text-decoration: none;
+  color: black;
+}
+
+.raver-proto {
+  object-fit: contain;
+  max-width: 30%;
+  height: auto;
+  /* display: flex; */
+  /* justify-content: right; */
+}
+
+.vegan-proto {
+  object-fit: contain;
+  max-width: 30%;
+  height: auto;
+  /* display: flex;
+  justify-content: right; */
+}
+
+.iron-hacker-proto {
+  object-fit: contain;
+  max-width: 30%;
+  height: auto;
+  /* display: flex;
+  justify-content: right; */
+}
