@@ -42,6 +42,7 @@
 
 #info-screen {
   border-style: solid;
+  width: 1863px;
   height: 770px;
   margin: 20px;
   margin-top: 105px;
@@ -57,6 +58,7 @@
 .raver-history {
   width: 400px;
   margin: 10px;
+  
 }
 
 .raver-history h1 {
@@ -68,6 +70,7 @@
   text-decoration: none;
   list-style: none;
   margin-top: 10px;
+  line-height: 30px;
 }
 
 .raver-history li a {
@@ -87,6 +90,7 @@
   text-decoration: none;
   list-style: none;
   margin-top: 10px;
+  line-height: 30px;
 }
 .vegan-history li a {
   text-decoration: none;
@@ -105,6 +109,7 @@
   text-decoration: none;
   list-style: none;
   margin-top: 10px;
+  line-height: 30px;
 }
 .iron-hacker-history li a {
   text-decoration: none;
@@ -113,24 +118,48 @@
 
 .raver-proto {
   object-fit: contain;
-  max-width: 30%;
+  max-width: 50%;
   height: auto;
-  /* display: flex; */
-  /* justify-content: right; */
+
 }
 
 .vegan-proto {
   object-fit: contain;
-  max-width: 30%;
+  max-width: 50%;
   height: auto;
-  /* display: flex;
-  justify-content: right; */
+
 }
 
 .iron-hacker-proto {
   object-fit: contain;
-  max-width: 30%;
+  max-width: 50%;
   height: auto;
-  /* display: flex;
-  justify-content: right; */
+
 }
+
+
+.right-click{
+  height: 175px;
+  margin-top: 315px;
+  background-color: white;
+  border-block-style: none;
+  border-style: none;
+} 
+
+.left-click{
+  height: 175px;
+  margin-top: 315px;
+  background-color: white;
+  border-block-style: none;
+  border-style: none;
+  
+} 
+
+#game-screen {
+  border-style: solid;
+  /* height: 770px; */
+  margin: 20px;
+  margin-top: 105px;
+  display: flex;
+  position: absolute;
+} 

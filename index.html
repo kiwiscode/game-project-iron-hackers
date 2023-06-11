@@ -11,9 +11,9 @@
     <div>
       <nav id="nav-list">
         <ul>
-          <li><a href="#" class="a-btn">A</a></li>
+          <li><a href="#" class="new-game">New Game</a></li>
           <li>
-            <a href="#">B</a>
+            <a href="#">Character History</a>
             <ul>
               <li><a href="#" class="raver">Raver</a></li>
               <li><a href="#" class="vegan">Vegan</a></li>
@@ -34,10 +34,10 @@
     </div>
 
     <section id="info-screen">
-      <canvas class="webgl"></canvas>
-      <img class="raver-proto display" src="/assets/raver.png" alt="" />
-      <img class="vegan-proto display" src="/assets/raver.png" alt="" />
-      <img class="iron-hacker-proto display" src="/assets/raver.png" alt="" />
+      <img class="raver-proto display" src="/assets/raver.png" alt="" />  
+       <img class="vegan-proto display" src="/assets/raver.png" alt="" /> 
+       <img class="iron-hacker-proto display" src="/assets/raver.png" alt="" /> 
+      
       <div>
         <div class="raver-history display">
           <p>
@@ -68,13 +68,13 @@
           </p>
 
           <div>
-            <h1>T</h1>
+            <h1>RAVER'S DİSPLAY</h1>
             <ul>
-              <li><a href="">1</a></li>
-              <li><a href="">2</a></li>
-              <li><a href="">3</a></li>
-              <li><a href="">4</a></li>
-              <li><a href="">5</a></li>
+              <li><a href="">SNG1</a></li>
+              <li><a href="">SNG2</a></li>
+              <li><a href="">SNG3</a></li>
+              <li><a href="">SNG4</a></li>
+              <li><a href="">SNG5</a></li>
             </ul>
           </div>
         </div>
@@ -152,14 +152,11 @@
         </div>
       </div>
     </section>
-    <script type="importmap">
-      {
-        "imports": {
-          "three": "./three.js-master/build/three.module.js"
-        }
-      }
-    </script>
-    <script type="module" src="module3d.js"></script>
-    <script src="script.js"></script>
+
+    <canvas id="game-screen"></canvas>
+    
+    <script src="game.js"></script>
+    <script  src="script.js"></script>
+    <script src="onLoad.js"></script>
   </body>
 </html>

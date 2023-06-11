@@ -7,6 +7,9 @@ const ironHackerHistoryLorem = document.querySelector(".iron-hacker-history");
 const raverProto = document.querySelector(".raver-proto");
 const veganProto = document.querySelector(".vegan-proto");
 const ironHackerProto = document.querySelector(".iron-hacker-proto");
+const newGameBtn = document.querySelector(".new-game");
+const infoScreen = document.querySelector("#info-screen");
+const gameScreen = document.querySelector("#game-screen");
 
 // Simplicity optimization for functionality for character infos
 function handleClick(
@@ -17,7 +20,8 @@ function handleClick(
 ) {
   historyElement.addEventListener("click", () => {
     displayElement.classList.remove("display");
-
+    gameScreen.style.display = "none";
+    infoScreen.style.display = "flex";
     if (
       !hideElement2.classList.contains("display") ||
       !hideElement1.classList.contains("display")
@@ -31,6 +35,8 @@ function handleClick(
 function addHistoryEventListener(historyButton, historyInfo, proto1, proto2) {
   historyButton.addEventListener("click", () => {
     historyInfo.classList.remove("display");
+    gameScreen.style.display = "none";
+    infoScreen.style.display = "flex";
     if (
       !proto1.classList.contains("display") ||
       !proto2.classList.contains("display")
@@ -68,4 +74,7 @@ addHistoryEventListener(
 addHistoryEventListener(raverHistory, raverProto, ironHackerProto, veganProto);
 addHistoryEventListener(veganHistory, veganProto, ironHackerProto, raverProto);
 
-console.log("HELLO WORLD");
+newGameBtn.addEventListener("click", function () {
+  infoScreen.style.display = "none";
+  gameScreen.style.display = "flex";
+});
