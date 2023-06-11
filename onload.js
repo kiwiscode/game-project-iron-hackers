@@ -25,7 +25,7 @@ window.onload = function () {
         }
       });
       window.addEventListener("keyup", (e) => {
-        if (this.game.keys.indexOf(e.key) > -1) {
+        if (this.game.keys.indexOf(e.key) !== -1) {
           // removing last element in the array with splice method
           this.game.keys.splice(this.game.keys.indexOf(e.key), 1);
         }
@@ -69,11 +69,15 @@ window.onload = function () {
       this.projectiles = [];
     }
     update() {
-      if (this.game.keys.includes("ArrowUp")) this.speedY = -this.maxSpeed;
-      else if (this.game.keys.includes("ArrowDown"))
+      if (this.game.keys.includes("ArrowUp")) {
+        this.speedY = -this.maxSpeed;
+      } else if (this.game.keys.includes("ArrowDown")) {
         this.speedY = this.maxSpeed;
-      else this.speedY = 0;
+      } else {
+        this.speedY = 0;
+      }
       this.y += this.speedY;
+
       // handle projectile
       this.projectiles.forEach((projectile) => {
         projectile.update();
