@@ -115,8 +115,38 @@ window.onload = function () {
   // For future (after first player is done )
   class Player3 {}
 
-  // obstacles(enemy in this case)
-  class Enemy {}
+  // obstacles(enemy in this case) Paren
+  class Enemy {
+    constructor(game) {
+      this.game = game;
+      this.x = this.game.width;
+      this.speedX = Math.random() * -1.5 - 0.5;
+      this.markedForDeletion = false;
+      this.lives = 5;
+      this.score = this.lives;
+    }
+    update() {
+      this.x += this.speedX;
+      if (this.x + this.width < 0) this.markedForDeletion = true;
+    }
+    draw(context) {
+      context.fillStyle = "red";
+      context.fillRect(this.x, this.y, this.width, this.height);
+      context.fillStyle = "black";
+      context.font = "10px Helvetica";
+      context.fillText(this.lives, this.x, this.y);
+    }
+  }
+
+  class FirstEnemy extends Enemy {
+    constructor(game) {
+      super(game);
+      this.width = 10;
+      this.height = 10;
+      // this is for top to bottom movements of enemy
+      this.y = Math.random() * (this.game.height * 0.9 - this.height);
+    }
+  }
 
   // background images individually
   class Layer {}
@@ -130,14 +160,52 @@ window.onload = function () {
       this.game = game;
       this.fontSize = 25;
       this.fontFamily = "Helvetica";
-      this.color = "yellow";
+      this.color = "white";
     }
     draw(context) {
-      //ammo
+      // save and restore method works together and saving the changes only for this method
+      context.save();
+      context.shadowOffsetX = 2;
+      context.shadowOffsetY = 2;
+      context.shadowColor = "black";
+
       context.fillStyle = this.color;
+      context.font = this.fontSize + "px" + this.fontFamily;
+      // fillText first argument : "textContent" , second argument : x , third argument : y
+      // score
+      context.fillText("Score :" + this.game.score, 1, 15);
+      //ammo
+
       for (let i = 0; i < this.game.ammo; i++) {
-        context.fillRect(1 + 4 * i, 5, 3, 20);
+        context.fillRect(1 + 4 * i, 20, 3, 20);
       }
+      // game over messages
+      if (this.game.gameOver) {
+        context.textAlign = "center";
+        let message1;
+        let message2;
+        if (this.game.score > this.game.winningScore) {
+          message1 = "You Win!";
+          message2 = "Well done!";
+        } else {
+          message1 = "You lose!";
+          message2 = "Try again next time !";
+        }
+        context.font = "50px" + this.fontFamily;
+        context.fillText(
+          message1,
+          this.game.width * 0.5,
+          this.game.height * 0.5 - 40
+        );
+
+        context.font = "25px" + this.fontFamily;
+        context.fillText(
+          message2,
+          this.game.width * 0.5,
+          this.game.height * 0.5 + 40
+        );
+      }
+      context.restore();
     }
   }
 
@@ -150,10 +218,20 @@ window.onload = function () {
       // fetching data from Player1 class
       this.player = new Player1(this);
 
+      // fetching data from child of Enemy class (FirstEnemy)
+      this.firstEnemy = new FirstEnemy(this);
+      // enemy objects array
+      this.enemies = [];
+      // +1 enemy in each 1000 miliseconds
+      this.enemyTimer = 0;
+      this.enemyInterval = 2000;
+
       // fetching data from InputHandler class
       this.input = new InputHandler(this);
+
       // fetching data from UI class
       this.ui = new UI(this);
+
       // data coming from InputHandler class
       this.keys = [];
 
@@ -164,8 +242,15 @@ window.onload = function () {
       // +1 ammo in each 500 miliseconds and while it reach that point store 0 back again.
       this.ammoTimer = 0;
       this.ammoInterval = 500;
+
+      // game over true/false
+      this.gameOver = false;
+
+      this.lives = 5;
+      this.score = this.lives;
+      this.winningScore = 10;
     }
-    update(timeDiff) {
+    update(deltaTime) {
       // fetching data from Player1 instance player
       this.player.update();
       // triggering ammo
@@ -173,7 +258,34 @@ window.onload = function () {
         if (this.ammo < this.maxAmmo) this.ammo++;
         this.ammoTimer = 0;
       } else {
-        this.ammoTimer += timeDiff;
+        this.ammoTimer += deltaTime;
+      }
+      this.enemies.forEach((enemy) => {
+        enemy.update();
+        if (this.checkCollision(this.player, enemy)) {
+          enemy.markedForDeletion = true;
+        }
+        this.player.projectiles.forEach((projectile) => {
+          if (this.checkCollision(projectile, enemy)) {
+            enemy.lives--;
+            projectile.markedForDeletion = true;
+            // projectile.markedForDeletion = true;
+            if (enemy.lives <= 0) {
+              enemy.markedForDeletion = true;
+              this.score += enemy.score;
+              if (this.score > this.winningScore) {
+                this.gameOver = true;
+              }
+            }
+          }
+        });
+      });
+      this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion);
+      if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
+        this.addEnemy();
+        this.enemyTimer = 0;
+      } else {
+        this.enemyTimer += deltaTime;
       }
     }
 
@@ -181,20 +293,42 @@ window.onload = function () {
     draw(context) {
       this.player.draw(context);
       this.ui.draw(context);
+      // drawing each enemy to canvas
+      this.enemies.forEach((enemy) => {
+        enemy.draw(context);
+      });
+    }
+    addEnemy() {
+      this.enemies.push(new FirstEnemy(this));
+      console.log(this.enemies);
+    }
+    checkCollision(rect1, rect2) {
+      return (
+        rect1.x < rect2.x + rect2.width &&
+        rect1.x + rect1.width > rect2.x &&
+        rect1.y < rect2.y + rect2.height &&
+        rect1.height + rect1.y > rect2.y
+      );
     }
   }
   const game = new Game(gameScreen.width, gameScreen.height);
-  let lastTime = 0;
+  let lastTimestamp = 0;
 
   // animation loop
-  function animate(timer) {
+  function animate(timeStamp) {
+    // Perform animation logic here
     // line 163 168 169 , now we know how many miliseconds take for a computer to render one animation frame to run one animation loop
-    const timeDiff = timer - lastTime;
-    lastTime = timer;
+    const deltaTime = timeStamp - lastTimestamp;
+    lastTimestamp = timeStamp;
     ctx.clearRect(0, 0, gameScreen.width, gameScreen.height);
-    game.update(timeDiff);
+    game.update(deltaTime);
     game.draw(ctx);
-    requestAnimationFrame(animate);
+    game.addEnemy();
+
+    // schedule the next animation frame
+    window.requestAnimationFrame(animate);
   }
-  animate(0);
+
+  // start the animation loop
+  window.requestAnimationFrame(animate(0));
 };
