@@ -7,6 +7,7 @@ window.onload = function () {
   infoScreen.style.display = "none";
   gameScreen.style.width = `${1863}px`;
   gameScreen.style.height = `${770}px`;
+  gameScreen.style.backgroundColor = "blue";
 
   // Player hareketleri
   class InputHandler {
@@ -21,6 +22,7 @@ window.onload = function () {
         ) {
           this.game.keys.push(e.key);
         } else if (e.key === " ") {
+          // activating projectile hit
           this.game.player.shootTop();
         }
       });
@@ -33,7 +35,7 @@ window.onload = function () {
     }
   }
 
-  // Oyuncudan çıkacak olan kurşunlar
+  // projectiles coming out from players
   class Projectile {
     constructor(game, x, y) {
       this.game = game;
@@ -44,7 +46,10 @@ window.onload = function () {
       this.speed = 3;
       this.markedForDeletion = false;
     }
+
+    // positioning the projectile
     update() {
+      // arranging the projectile speed and visibility range
       this.x += this.speed;
       if (this.x > this.game.width * 0.9) this.markedForDeletion = true;
     }
@@ -87,13 +92,14 @@ window.onload = function () {
       );
     }
     draw(context) {
-      context.fillStyle = "green";
+      context.fillStyle = "black";
       context.fillRect(this.x, this.y, this.width, this.height);
       this.projectiles.forEach((projectile) => {
         projectile.draw(context);
       });
     }
     shootTop() {
+      // manipulating the projectiles animation
       if (this.game.ammo > 0) {
         this.projectiles.push(
           new Projectile(this.game, this.x + 80, this.y + 30)
@@ -103,49 +109,92 @@ window.onload = function () {
     }
   }
 
-  // Oyuncu kontrolü
-  //   class Player2 {}
+  // For future ( after first player is done)
+  class Player2 {}
 
-  //   // Oyuncu kontrolü
-  //   class Player3 {}
+  // For future (after first player is done )
+  class Player3 {}
 
-  // Engeller
+  // obstacles(enemy in this case)
   class Enemy {}
 
-  // Arka plan individually
+  // background images individually
   class Layer {}
 
-  // Arka plan görüntülerin tamamı toplam
+  // background images plan
   class Background {}
 
   // score timer other infos
-  class UI {}
+  class UI {
+    constructor(game) {
+      this.game = game;
+      this.fontSize = 25;
+      this.fontFamily = "Helvetica";
+      this.color = "yellow";
+    }
+    draw(context) {
+      //ammo
+      context.fillStyle = this.color;
+      for (let i = 0; i < this.game.ammo; i++) {
+        context.fillRect(1 + 4 * i, 5, 3, 20);
+      }
+    }
+  }
 
   // tüm logic burada toplanacak projenin beyni
   class Game {
     constructor(width, height) {
       this.width = width;
       this.height = height;
+
+      // fetching data from Player1 class
       this.player = new Player1(this);
+
+      // fetching data from InputHandler class
       this.input = new InputHandler(this);
+      // fetching data from UI class
+      this.ui = new UI(this);
+      // data coming from InputHandler class
       this.keys = [];
+
+      // data getting manipuleted from Player class
       this.ammo = 20;
+      // while loop turn max ammo you can get
+      this.maxAmmo = 50;
+      // +1 ammo in each 500 miliseconds and while it reach that point store 0 back again.
+      this.ammoTimer = 0;
+      this.ammoInterval = 500;
     }
-    update() {
+    update(timeDiff) {
+      // fetching data from Player1 instance player
       this.player.update();
+      // triggering ammo
+      if (this.ammoTimer > this.ammoInterval) {
+        if (this.ammo < this.maxAmmo) this.ammo++;
+        this.ammoTimer = 0;
+      } else {
+        this.ammoTimer += timeDiff;
+      }
     }
+
+    // fetching data from Player1 instance player
     draw(context) {
       this.player.draw(context);
+      this.ui.draw(context);
     }
   }
   const game = new Game(gameScreen.width, gameScreen.height);
+  let lastTime = 0;
 
   // animation loop
-  function animate() {
+  function animate(timer) {
+    // line 163 168 169 , now we know how many miliseconds take for a computer to render one animation frame to run one animation loop
+    const timeDiff = timer - lastTime;
+    lastTime = timer;
     ctx.clearRect(0, 0, gameScreen.width, gameScreen.height);
-    game.update();
+    game.update(timeDiff);
     game.draw(ctx);
     requestAnimationFrame(animate);
   }
-  animate();
+  animate(0);
 };
