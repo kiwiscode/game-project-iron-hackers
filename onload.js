@@ -8,6 +8,8 @@ window.onload = function () {
   gameScreen.style.display = "none";
   gameScreen.style.width = `${1863}px`;
   gameScreen.style.height = `${770}px`;
+  // gameScreen.style.width = `${1000}px`;
+  // gameScreen.style.height = `${500}px`;
   gameScreen.style.backgroundColor = "blue";
 
   // Oyuncu kontrolü ve özellikleri
@@ -41,11 +43,8 @@ window.onload = function () {
       );
     }
     draw(context) {
-      const imgRaver = new Image();
-      imgRaver.src = "/assets/raver.png";
-      // context.fillStyle = "Green";
-      // context.fillRect(this.x, this.y, this.width, this.height);
-      context.drawImage(imgRaver, this.x, this.y, this.width, this.height);
+      context.fillStyle = "Black";
+      context.fillRect(this.x, this.y, this.width, this.height);
       this.projectiles.forEach((projectile) => {
         projectile.draw(context);
       });
@@ -60,10 +59,6 @@ window.onload = function () {
       }
     }
   }
-
-  class Vegan {}
-
-  class IronHacker {}
 
   // Player hareketleri
   class InputHandler {
@@ -267,6 +262,7 @@ window.onload = function () {
       if (this.gameTime > this.timeLimit) {
         this.gameOver = true;
       }
+
       // fetching data from Player1 instance player
       this.player.update();
       // triggering ammo

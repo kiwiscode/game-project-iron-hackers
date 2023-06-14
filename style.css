@@ -6,7 +6,7 @@
 
 #nav-list {
   display: flex;
-  justify-content: center;
+  justify-content: left;
 }
 
 #nav-list ul {
@@ -19,7 +19,7 @@
   height: 40px;
   opacity: 0.9;
   text-align: center;
-  font-size: 27px;
+  font-size: 25px;
 }
 
 #nav-list ul li a {
@@ -41,14 +41,14 @@
 }
 
 #info-screen {
-  border-style: solid;
+  /* border-style: solid; */
   width: 1863px;
   height: 770px;
   margin: 20px;
-  margin-top: 105px;
+  margin-top: 20px;
   display: flex;
   flex-direction: row-reverse;
-  justify-content: center;
+  justify-content: left;
 }
 
 .display {
@@ -58,11 +58,11 @@
 .raver-history {
   width: 400px;
   margin: 10px;
-  
+  line-height: 30px;
 }
 
 .raver-history h1 {
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
 .raver-history li {
@@ -78,82 +78,12 @@
   color: black;
 }
 
-.vegan-history {
-  width: 400px;
-  margin: 10px;
-}
-.vegan-history h1 {
-  margin-top: 20px;
-}
-.vegan-history li {
-  margin-left: 0px;
-  text-decoration: none;
-  list-style: none;
-  margin-top: 10px;
-  line-height: 30px;
-}
-.vegan-history li a {
-  text-decoration: none;
-  color: black;
-}
-
-.iron-hacker-history {
-  width: 400px;
-  margin: 10px;
-}
-.iron-hacker-history h1 {
-  margin-top: 20px;
-}
-.iron-hacker-history li {
-  margin-left: 0px;
-  text-decoration: none;
-  list-style: none;
-  margin-top: 10px;
-  line-height: 30px;
-}
-.iron-hacker-history li a {
-  text-decoration: none;
-  color: black;
-}
-
 .raver-proto {
   object-fit: contain;
   max-width: 50%;
+  margin-bottom: 150px;
   height: auto;
-
 }
-
-.vegan-proto {
-  object-fit: contain;
-  max-width: 50%;
-  height: auto;
-
-}
-
-.iron-hacker-proto {
-  object-fit: contain;
-  max-width: 50%;
-  height: auto;
-
-}
-
-
-.right-click{
-  height: 175px;
-  margin-top: 315px;
-  background-color: white;
-  border-block-style: none;
-  border-style: none;
-} 
-
-.left-click{
-  height: 175px;
-  margin-top: 315px;
-  background-color: white;
-  border-block-style: none;
-  border-style: none;
-  
-} 
 
 #game-screen {
   border-style: solid;
@@ -162,4 +92,21 @@
   margin-top: 105px;
   display: flex;
   position: absolute;
-} 
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: cornflowerblue;
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: lightblue;
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-current-time-display {
+  color: #333;
+}
+
+audio {
+  display: block;
+}
