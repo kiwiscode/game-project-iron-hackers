@@ -1,13 +1,69 @@
 window.onload = function () {
   const gameScreen = document.getElementById("game-screen");
   const ctx = gameScreen.getContext("2d");
-  const infoScreen = document.getElementById("info-screen");
 
-  gameScreen.style.display = "flex";
-  infoScreen.style.display = "none";
+  const infoScreen = document.getElementById("info-screen");
+  infoScreen.style.display = "flex";
+
+  gameScreen.style.display = "none";
   gameScreen.style.width = `${1863}px`;
   gameScreen.style.height = `${770}px`;
   gameScreen.style.backgroundColor = "blue";
+
+  // Oyuncu kontrolü ve özellikleri
+  class Raver {
+    constructor(game) {
+      this.game = game;
+      this.width = 60;
+      this.height = 60;
+      this.x = 1;
+      this.y = 60;
+      this.speedY = 0;
+      this.maxSpeed = 1;
+      this.projectiles = [];
+    }
+    update() {
+      if (this.game.keys.includes("ArrowUp")) {
+        this.speedY = -this.maxSpeed;
+      } else if (this.game.keys.includes("ArrowDown")) {
+        this.speedY = this.maxSpeed;
+      } else {
+        this.speedY = 0;
+      }
+      this.y += this.speedY;
+
+      // handle projectile
+      this.projectiles.forEach((projectile) => {
+        projectile.update();
+      });
+      this.projectiles = this.projectiles.filter(
+        (projectile) => !projectile.markedForDeletion
+      );
+    }
+    draw(context) {
+      const imgRaver = new Image();
+      imgRaver.src = "/assets/raver.png";
+      // context.fillStyle = "Green";
+      // context.fillRect(this.x, this.y, this.width, this.height);
+      context.drawImage(imgRaver, this.x, this.y, this.width, this.height);
+      this.projectiles.forEach((projectile) => {
+        projectile.draw(context);
+      });
+    }
+    shootTop() {
+      // manipulating the projectiles animation
+      if (this.game.ammo > 0) {
+        this.projectiles.push(
+          new Projectile(this.game, this.x + 80, this.y + 30)
+        );
+        this.game.ammo--;
+      }
+    }
+  }
+
+  class Vegan {}
+
+  class IronHacker {}
 
   // Player hareketleri
   class InputHandler {
@@ -61,66 +117,13 @@ window.onload = function () {
 
   // Kurşun yiyen Enemylerden düşecek parçalar
   class Particle {}
-  // Oyuncu kontrolü ve özellikleri
-  class Player1 {
-    constructor(game) {
-      this.game = game;
-      this.width = 60;
-      this.height = 60;
-      this.x = 1;
-      this.y = 60;
-      this.speedY = 0;
-      this.maxSpeed = 1;
-      this.projectiles = [];
-    }
-    update() {
-      if (this.game.keys.includes("ArrowUp")) {
-        this.speedY = -this.maxSpeed;
-      } else if (this.game.keys.includes("ArrowDown")) {
-        this.speedY = this.maxSpeed;
-      } else {
-        this.speedY = 0;
-      }
-      this.y += this.speedY;
-
-      // handle projectile
-      this.projectiles.forEach((projectile) => {
-        projectile.update();
-      });
-      this.projectiles = this.projectiles.filter(
-        (projectile) => !projectile.markedForDeletion
-      );
-    }
-    draw(context) {
-      context.fillStyle = "black";
-      context.fillRect(this.x, this.y, this.width, this.height);
-      this.projectiles.forEach((projectile) => {
-        projectile.draw(context);
-      });
-    }
-    shootTop() {
-      // manipulating the projectiles animation
-      if (this.game.ammo > 0) {
-        this.projectiles.push(
-          new Projectile(this.game, this.x + 80, this.y + 30)
-        );
-        this.game.ammo--;
-      }
-    }
-  }
-
-  // For future ( after first player is done)
-  class Player2 {}
-
-  // For future (after first player is done )
-  class Player3 {}
 
   // obstacles(enemy in this case) Paren
   class Enemy {
     constructor(game) {
       this.game = game;
       this.x = this.game.width;
-      this.speedX = Math.random() * -1.5 - 0.5;
+      this.speedX = Math.random() * -0.2 - 0.5;
       this.markedForDeletion = false;
       this.lives = 5;
       this.score = this.lives;
@@ -219,7 +222,7 @@ window.onload = function () {
       this.height = height;
 
       // fetching data from Player1 class
-      this.player = new Player1(this);
+      this.player = new Raver(this);
 
       // fetching data from child of Enemy class (FirstEnemy)
       this.firstEnemy = new FirstEnemy(this);
@@ -250,12 +253,12 @@ window.onload = function () {
       this.gameOver = false;
 
       this.lives = 5;
-      this.score = this.lives;
-      this.winningScore = 10;
+      this.score = 0;
+      this.winningScore = 50;
 
       // after 5 seconds the game will end depending our score
       this.gameTime = 0;
-      this.timeLimit = 10000;
+      this.timeLimit = 30000;
     }
     update(deltaTime) {
       if (!this.gameOver) {
@@ -277,6 +280,7 @@ window.onload = function () {
         enemy.update();
         if (this.checkCollision(this.player, enemy)) {
           enemy.markedForDeletion = true;
+          this.score -= 5;
         }
         this.player.projectiles.forEach((projectile) => {
           if (this.checkCollision(projectile, enemy)) {
@@ -284,7 +288,7 @@ window.onload = function () {
             projectile.markedForDeletion = true;
             if (enemy.lives === 0) {
               enemy.markedForDeletion = true;
-              if (!this.gameOver) this.score += enemy.score;
+              if (!this.gameOver) this.score += 10;
               if (this.score > this.winningScore) this.gameOver = true;
             }
           }
@@ -310,7 +314,6 @@ window.onload = function () {
     }
     addEnemy() {
       this.enemies.push(new FirstEnemy(this));
-      console.log(this.enemies);
     }
     checkCollision(rect1, rect2) {
       return (

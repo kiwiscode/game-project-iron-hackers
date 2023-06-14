@@ -74,7 +74,34 @@ addHistoryEventListener(
 addHistoryEventListener(raverHistory, raverProto, ironHackerProto, veganProto);
 addHistoryEventListener(veganHistory, veganProto, ironHackerProto, raverProto);
 
-newGameBtn.addEventListener("click", function () {
+// W/Raver , W/Vegan , W/IronHacker
+const raverPlay = document.querySelector(".raver-play");
+const veganPlay = document.querySelector(".vegan-play");
+const ironHackerPlay = document.querySelector(".iron-hacker-play");
+
+raverPlay.addEventListener("click", function () {
   infoScreen.style.display = "none";
   gameScreen.style.display = "flex";
+  if (!veganPlay.classList("display") && !ironHackerPlay.classList("display")) {
+    veganPlay.classList.add("display");
+    ironHackerPlay.classList.add("display");
+  }
+});
+
+veganPlay.addEventListener("click", function () {
+  infoScreen.style.display = "none";
+  gameScreen.style.display = "flex";
+  if (!raverPlay.classList("display") && !ironHackerPlay.classList("display")) {
+    raverPlay.classList.add("display");
+    ironHackerPlay.classList.add("display");
+  }
+});
+
+ironHackerPlay.addEventListener("click", function () {
+  infoScreen.style.display = "none";
+  gameScreen.style.display = "flex";
+  if (!raverPlay.classList("display") && !veganPlay.classList("display")) {
+    raverPlay.classList.add("display");
+    veganPlay.classList.add("display");
+  }
 });
