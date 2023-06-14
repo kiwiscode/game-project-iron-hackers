@@ -68,7 +68,7 @@ window.onload = function () {
       this.width = 60;
       this.height = 60;
       this.x = 1;
-      this.y = 50;
+      this.y = 60;
       this.speedY = 0;
       this.maxSpeed = 1;
       this.projectiles = [];
@@ -179,6 +179,9 @@ window.onload = function () {
       for (let i = 0; i < this.game.ammo; i++) {
         context.fillRect(1 + 4 * i, 20, 3, 20);
       }
+      //timer
+      const formattedTime = (this.game.gameTime * 0.001).toFixed(1);
+      context.fillText("Timer :" + formattedTime, 1, 50);
       // game over messages
       if (this.game.gameOver) {
         context.textAlign = "center";
@@ -224,7 +227,7 @@ window.onload = function () {
       this.enemies = [];
       // +1 enemy in each 1000 miliseconds
       this.enemyTimer = 0;
-      this.enemyInterval = 2000;
+      this.enemyInterval = 1000;
 
       // fetching data from InputHandler class
       this.input = new InputHandler(this);
@@ -249,8 +252,18 @@ window.onload = function () {
       this.lives = 5;
       this.score = this.lives;
       this.winningScore = 10;
+
+      // after 5 seconds the game will end depending our score
+      this.gameTime = 0;
+      this.timeLimit = 10000;
     }
     update(deltaTime) {
+      if (!this.gameOver) {
+        this.gameTime += deltaTime;
+      }
+      if (this.gameTime > this.timeLimit) {
+        this.gameOver = true;
+      }
       // fetching data from Player1 instance player
       this.player.update();
       // triggering ammo
@@ -269,13 +282,10 @@ window.onload = function () {
           if (this.checkCollision(projectile, enemy)) {
             enemy.lives--;
             projectile.markedForDeletion = true;
-            // projectile.markedForDeletion = true;
-            if (enemy.lives <= 0) {
+            if (enemy.lives === 0) {
               enemy.markedForDeletion = true;
-              this.score += enemy.score;
-              if (this.score > this.winningScore) {
-                this.gameOver = true;
-              }
+              if (!this.gameOver) this.score += enemy.score;
+              if (this.score > this.winningScore) this.gameOver = true;
             }
           }
         });
@@ -323,7 +333,6 @@ window.onload = function () {
     ctx.clearRect(0, 0, gameScreen.width, gameScreen.height);
     game.update(deltaTime);
     game.draw(ctx);
-    game.addEnemy();
 
     // schedule the next animation frame
     window.requestAnimationFrame(animate);

@@ -11,7 +11,7 @@ const newGameBtn = document.querySelector(".new-game");
 const infoScreen = document.querySelector("#info-screen");
 const gameScreen = document.querySelector("#game-screen");
 
-// Simplicity optimization for functionality for character infos
+// Simplicity optimization functionality for character infos
 function handleClick(
   historyElement,
   displayElement,
