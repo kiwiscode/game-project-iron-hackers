@@ -15,48 +15,49 @@
 - Immerse yourself in a captivating gaming environment with stunning graphics and immersive sound effects.
 
 <h1>Technologies Used</h1>
-<p>- <h3>HTML:</h3> Used for structuring the game interface. </p>
-- CSS: Utilized CSS and flexbox for layout and styling.
-- JavaScript: Implemented DOM manipulation and embraced the object-oriented programming (OOP) paradigm for interactivity, game logic, and modular code organization.
-- Canvas 2D Drawing: Employed JavaScript to create and manipulate 2D graphics using the HTML5 Canvas element.
+<p>HTML: Used for structuring the game interface. </p>
+<p>CSS: Utilized CSS and flexbox for layout and styling.</p>
+<p>JavaScript: Implemented DOM manipulation and embraced the object-oriented programming (OOP) paradigm for interactivity, game logic, and modular code organization.</p>
+<p>Canvas 2D Drawing: Employed JavaScript to create and manipulate 2D graphics using the HTML5 Canvas element.</p>
 
 In the action-packed Iron Hackers Adventure, use JavaScript's object-oriented programming approach to manipulate the DOM and engage in thrilling gameplay. Implement classes, inheritance, and encapsulation to create modular and reusable code. Destroy relentless Drone enemies, earn points, and strive for victory. Utilize CSS and flexbox for responsive and visually appealing game design.
 
 "Guess My Number" game is built primarily using DOM manipulation techniques.
 
 <h1>Installation</h1>
-1. Clone the repository or download the game files from GitHub.
-2. Open the game folder on your local machine.
+<p>1. Clone the repository or download the game files from GitHub.</p>
+<p>2. Open the game folder on your local machine.</p>
 
 <h1>Usage</h1>
-1.Open the game folder
-2.Navigate to the index.html
-3.Follow the list buttons on the navigation bar
+<p>1.Open the game folder</p>
+<p>2.Navigate to the index.html</p>
+<p>3.Follow the list buttons on the navigation bar</p>
 
 <h1>Controls</h1>
 <h2>Iron Hacker's Adventure</h2>
-"Arrow up" to go up
-"Arrow dowm" to go down
-"Space" to damage and destroy drones
+<p>"Arrow up" to go up</p>
+<p>"Arrow dowm" to go down</p>
+<p>"Space" to damage and destroy drones</p>
 
 <h1>Challenges</h1>
 During the development of Iron Hackers Adventures, I encountered several challenges that pushed me to expand my skills and problem-solving abilities. Some of the key challenges I faced include:
 
-1. <h3>Canvas Animation</h3>: Implementing smooth animations using the Canvas element required careful consideration of frame rates, object movement, and collision detection.
+1. <h3>Canvas Animation</h3>
+   <p>Implementing smooth animations using the Canvas element required careful consideration of frame rates, object movement, and collision detection.</p>
 
-2.<h3>OOP Architecture</h3>: Designing a robust and modular object-oriented architecture that facilitated code reusability, encapsulation, and flexibility was a complex task.
+2. <h3>OOP Architecture</h3> <p>Designing a robust and modular object-oriented architecture that facilitated code reusability, encapsulation, and flexibility was a complex task.</p>
 
-3.<h3>Game Balancing</h3>: Striking the right balance between difficulty and player enjoyment was a continuous challenge. It involved fine-tuning parameters such as enemy strength, player abilities, and scoring mechanics.
+3. <h3>Game Balancing</h3> <p>Striking the right balance between difficulty and player enjoyment was a continuous challenge. It involved fine-tuning parameters such as enemy strength, player abilities, and scoring mechanics.</p>
 
-4.<h3>Responsive Design</h3>:Ensuring that the game interface was visually appealing and functioned well across various screen sizes and devices required meticulous attention to CSS and flexbox layouts.
+4. <h3>Responsive Design</h3><p>Ensuring that the game interface was visually appealing and functioned well across various screen sizes and devices required meticulous attention to CSS and flexbox layouts.</p>
 
 Overcoming these challenges has been a valuable learning experience, allowing me to enhance my programming skills and create an engaging gaming experience in Iron Hackers Adventures.
 
 <h1>Roadmap</h1>
 Here are the planned features and improvements for the future development of Iron Hackers Adventures:
-<h3>3D Animated Characters</h3>:<p>Introduce three additional 3D animated characters alongside the Iron Hacker. These characters will have their own unique abilities and backstories, visible in the character history screen.</p>
-<h3>Audio Integration</h3>:<p>Implement sound effects such as projectile sounds and enemy hit particles to enhance the overall gaming experience. Additionally, add background music to create a more immersive atmosphere.</p>
-<h3>Expanded Enemy Pool and Power-ups</h3>:<p>Increase the variety and challenge by expanding the enemy pool with different enemy types, behaviors, and abilities. Add power-ups and special events to provide exciting gameplay moments and enhance player engagement.</p>
-<h3>Player Character Pool</h3>:<p>Allow players to choose from multiple player characters, each with their own strengths and weaknesses. Expand the pool of available characters to offer more diverse gameplay options.</p>
+<h3>3D Animated Characters</h3><p>Introduce three additional 3D animated characters alongside the Iron Hacker. These characters will have their own unique abilities and backstories, visible in the character history screen.</p>
+<h3>Audio Integration</h3><p>Implement sound effects such as projectile sounds and enemy hit particles to enhance the overall gaming experience. Additionally, add background music to create a more immersive atmosphere.</p>
+<h3>Expanded Enemy Pool and Power-ups</h3><p>Increase the variety and challenge by expanding the enemy pool with different enemy types, behaviors, and abilities. Add power-ups and special events to provide exciting gameplay moments and enhance player engagement.</p>
+<h3>Player Character Pool</h3><p>Allow players to choose from multiple player characters, each with their own strengths and weaknesses. Expand the pool of available characters to offer more diverse gameplay options.</p>
 
 These planned additions will elevate Iron Hackers Adventures to new heights, offering an even more immersive and thrilling experience for players.
