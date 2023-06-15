@@ -15,9 +15,9 @@
 - Immerse yourself in a captivating gaming environment with stunning graphics and immersive sound effects.
 
 <h1>Technologies Used</h1>
-<p>HTML: Used for structuring the game interface. </p>
-<p>CSS: Utilized CSS and flexbox for layout and styling.</p>
-<p>JavaScript: Implemented DOM manipulation and embraced the object-oriented programming (OOP) paradigm for interactivity, game logic, and modular code organization.</p>
+<p>```HTML```: Used for structuring the game interface. </p>
+<p>```CSS```: Utilized CSS and flexbox for layout and styling.</p>
+<p>```JavaScript```: Implemented DOM manipulation and embraced the object-oriented programming (OOP) paradigm for interactivity, game logic, and modular code organization.</p>
 <p>Canvas 2D Drawing: Employed JavaScript to create and manipulate 2D graphics using the HTML5 Canvas element.</p>
 
 In the action-packed Iron Hackers Adventure, use JavaScript's object-oriented programming approach to manipulate the DOM and engage in thrilling gameplay. Implement classes, inheritance, and encapsulation to create modular and reusable code. Destroy relentless Drone enemies, earn points, and strive for victory. Utilize CSS and flexbox for responsive and visually appealing game design.
