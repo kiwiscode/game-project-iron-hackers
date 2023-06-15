@@ -4,6 +4,7 @@ const raverProto = document.querySelector(".raver-proto");
 const newGameBtn = document.querySelector(".new-game");
 const infoScreen = document.querySelector("#info-screen");
 const gameScreen = document.querySelector("#game-screen");
+const canvasContainer = document.getElementById("canvas-container");
 
 raverHistory.addEventListener("click", function () {
   gameScreen.style.display = "none";
@@ -17,4 +18,5 @@ newGameBtn.addEventListener("click", function () {
   infoScreen.style.display = "none";
   raverHistoryLorem.classList.remove("display");
   raverProto.classList.add("display");
+  canvasContainer.style.display = "flex";
 });
