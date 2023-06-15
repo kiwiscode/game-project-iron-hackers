@@ -20,3 +20,4 @@ newGameBtn.addEventListener("click", function () {
   raverProto.classList.add("display");
   canvasContainer.style.display = "flex";
 });
+//
