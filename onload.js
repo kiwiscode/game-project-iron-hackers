@@ -381,6 +381,7 @@ window.onload = function () {
       this.gameTime = 0;
     }
   }
+  console.log("hello world");
   const game = new Game(gameScreen.width, gameScreen.height);
   let lastTimestamp = 0;
 
