@@ -15,7 +15,7 @@
 - Immerse yourself in a captivating gaming environment with stunning graphics and immersive sound effects.
 
 <h1>Technologies Used</h1>
-- HTML: Used for structuring the game interface.
+- HTML:<p>Used for structuring the game interface.</p>
 - CSS: Utilized CSS and flexbox for layout and styling.
 - JavaScript: Implemented DOM manipulation and embraced the object-oriented programming (OOP) paradigm for interactivity, game logic, and modular code organization.
 - Canvas 2D Drawing: Employed JavaScript to create and manipulate 2D graphics using the HTML5 Canvas element.
