@@ -4,7 +4,7 @@
 <h1>Description</h1>
 <p>As you engage in this adrenaline-fueled challenge, your mission is to destroy the relentless Drone enemies that stand in your way. Only by eliminating these drones and earning a sufficient number of points can you emerge victorious. However, be warned! Time is of the essence. If you fail to gather enough points by defeating the drones within the given time frame, you will face defeat.And you can listen to the music while playing iron hackers adventures because it has a playlist.
 
-! If you want to change game, you can switch to guess my number game.In this game, you will test your skills by attempting to guess the correct number within a specified range.</p>
+<h3>If you want to change game, you can switch to guess my number game.In this game, you will test your skills by attempting to guess the correct number within a specified range.</h3></p>
 
 - Experience the thrill of the Iron Hackers Adventure game, where you must destroy drones to earn points and achieve victory.
 
@@ -15,7 +15,7 @@
 - Immerse yourself in a captivating gaming environment with stunning graphics and immersive sound effects.
 
 <h1>Technologies Used</h1>
-- HTML:<p>Used for structuring the game interface.</p>
+<p>- <h3>HTML:</h3> Used for structuring the game interface. </p>
 - CSS: Utilized CSS and flexbox for layout and styling.
 - JavaScript: Implemented DOM manipulation and embraced the object-oriented programming (OOP) paradigm for interactivity, game logic, and modular code organization.
 - Canvas 2D Drawing: Employed JavaScript to create and manipulate 2D graphics using the HTML5 Canvas element.
