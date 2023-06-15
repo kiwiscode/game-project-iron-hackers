@@ -4,7 +4,6 @@ window.onload = function () {
   const ctx = gameScreen.getContext("2d");
   const canvasContainer = document.getElementById("canvas-container");
   canvasContainer.appendChild(canvas);
-  // Rest of your existing code...
   ctx.imageSmoothingEnabled = true;
 
   const infoScreen = document.getElementById("info-screen");
@@ -12,9 +11,7 @@ window.onload = function () {
   canvasContainer.style.display = "none";
   canvas.style.display = "none";
   infoScreen.style.display = "flex";
-  // canvas.width = `${1863}px`;
-  // canvas.height = `${770}px`;
-  // canvas.style.backgroundColor = "blue";
+
   canvas.width = 1000;
   canvas.height = 500;
   canvas.style.backgroundColor = "white";
@@ -22,54 +19,6 @@ window.onload = function () {
   restartBtn.addEventListener("click", function () {
     game.restart();
   });
-
-  class Layer {
-    constructor(game, image, speedModifier) {
-      (this.game = game), (this.image = image);
-      this.speedModifier = speedModifier;
-      this.width = 1768;
-      this.height = 500;
-      this.x = 0;
-      this.y = 0;
-    }
-    update() {
-      if (this.x <= -this.width) this.x = 0;
-      this.x -= this.game.speed * this.speedModifier;
-    }
-    draw(context) {
-      context.drawImage(this.image, this.x, this.y);
-      context.drawImage(this.image, this.x + this.width, this.y);
-    }
-  }
-
-  class Background {
-    constructor(game) {
-      this.game = game;
-      this.image1 = document.getElementById("layer1");
-      this.image2 = document.getElementById("layer2");
-      this.image3 = document.getElementById("layer3");
-      this.image4 = document.getElementById("layer4");
-      // this.image5 = document.getElementById("layer5");
-      this.layer1 = new Layer(this.game, this.image1, 0.2);
-      this.layer2 = new Layer(this.game, this.image2, 0.4);
-      this.layer3 = new Layer(this.game, this.image3, 1);
-      this.layer4 = new Layer(this.game, this.image4, 3);
-      // this.layer5 = new Layer(this.game, this.image5, 1);
-      this.layers = [
-        this.layer1,
-        this.layer2,
-        this.layer3,
-        // this.layer5,
-      ];
-    }
-    update() {
-      this.layers.forEach((layer) => layer.update());
-    }
-    draw(context) {
-      this.layers.forEach((layer) => layer.draw(context));
-    }
-  }
-  // Oyuncu kontrolü ve özellikleri
   class IronHacker {
     constructor(game) {
       this.game = game;
@@ -94,7 +43,6 @@ window.onload = function () {
       }
       this.y += this.speedY;
 
-      // handle projectile
       this.projectiles.forEach((projectile) => {
         projectile.update();
       });
@@ -121,7 +69,6 @@ window.onload = function () {
     }
 
     shootTop() {
-      // manipulating the projectiles animation
       if (this.game.ammo > 0) {
         this.projectiles.push(
           new Projectile(this.game, this.x + 80, this.y + 30)
@@ -131,7 +78,6 @@ window.onload = function () {
     }
   }
 
-  // Player hareketleri
   class InputHandler {
     // -1 arrow up
     // 1 arrow down
@@ -159,8 +105,6 @@ window.onload = function () {
       });
     }
   }
-
-  // projectiles coming out from players
   class Projectile {
     constructor(game, x, y) {
       this.game = game;
@@ -172,7 +116,6 @@ window.onload = function () {
       this.markedForDeletion = false;
     }
 
-    // positioning the projectile
     update() {
       // arranging the projectile speed and visibility range
       this.x += this.speed;
@@ -184,10 +127,6 @@ window.onload = function () {
     }
   }
 
-  // Kurşun yiyen Enemylerden düşecek parçalar
-  class Particle {}
-
-  // obstacles(enemy in this case) Paren
   class Enemy {
     constructor(game) {
       this.game = game;
@@ -205,7 +144,6 @@ window.onload = function () {
       if (this.x + this.width < 0) this.markedForDeletion = true;
     }
     draw(context) {
-      // context.fillRect(this.x, this.y, this.width, this.height);
       context.drawImage(
         this.image,
         this.frameX * this.width,
@@ -233,6 +171,48 @@ window.onload = function () {
     }
   }
 
+  class Layer {
+    constructor(game, image, speedModifier) {
+      (this.game = game), (this.image = image);
+      this.speedModifier = speedModifier;
+      this.width = 1768;
+      this.height = 500;
+      this.x = 0;
+      this.y = 0;
+    }
+    update() {
+      if (this.x <= -this.width) this.x = 0;
+      this.x -= this.game.speed * this.speedModifier;
+    }
+    draw(context) {
+      context.drawImage(this.image, this.x, this.y);
+      context.drawImage(this.image, this.x + this.width, this.y);
+    }
+  }
+
+  class Background {
+    constructor(game) {
+      this.game = game;
+      this.image1 = document.getElementById("layer1");
+      this.image2 = document.getElementById("layer2");
+      this.image3 = document.getElementById("layer3");
+      this.image4 = document.getElementById("layer4");
+
+      this.layer1 = new Layer(this.game, this.image1, 0.2);
+      this.layer2 = new Layer(this.game, this.image2, 0.4);
+      this.layer3 = new Layer(this.game, this.image3, 1);
+      this.layer4 = new Layer(this.game, this.image4, 3);
+
+      this.layers = [this.layer1, this.layer2, this.layer3];
+    }
+    update() {
+      this.layers.forEach((layer) => layer.update());
+    }
+    draw(context) {
+      this.layers.forEach((layer) => layer.draw(context));
+    }
+  }
+
   // score timer other infos
   class UI {
     constructor(game) {
@@ -242,7 +222,7 @@ window.onload = function () {
       this.color = "white";
     }
     draw(context) {
-      // save and restore method works together and saving the changes only for this class content
+      // save and restore method works together and saving the changes only for this class content not for whole canvas
       context.save();
       context.shadowOffsetX = 2;
       context.shadowOffsetY = 2;
@@ -290,53 +270,38 @@ window.onload = function () {
     }
   }
 
-  // tüm logic burada toplanacak projenin beyni
+  // game logic
   class Game {
     constructor(width, height) {
       this.width = width;
       this.height = height;
 
-      // fetching data from Player1 class
       this.player = new IronHacker(this);
-
       this.background = new Background(this);
-      // fetching data from child of Enemy class (FirstEnemy)
       this.firstEnemy = new Drone(this);
-      // enemy objects array
+      this.input = new InputHandler(this);
+      this.ui = new UI(this);
+
       this.enemies = [];
-      // +1 enemy in each 1000 miliseconds
+      this.keys = [];
+
       this.enemyTimer = 0;
       this.enemyInterval = 3000;
 
-      // fetching data from InputHandler class
-      this.input = new InputHandler(this);
-
-      // fetching data from UI class
-      this.ui = new UI(this);
-
-      // data coming from InputHandler class
-      this.keys = [];
-
-      // data getting manipuleted from Player class
       this.ammo = 20;
-      // while loop turn max ammo you can get
       this.maxAmmo = 50;
-      // +1 ammo in each 500 miliseconds and while it reach that point store 0 back again.
       this.ammoTimer = 0;
       this.ammoInterval = 500;
-
-      // game over true/false
-      this.gameOver = false;
 
       this.lives = 5;
       this.score = 0;
       this.winningScore = 50;
 
-      // after 5 seconds the game will end depending our score
       this.gameTime = 0;
       this.timeLimit = 30000;
 
       this.speed = 1;
+      this.gameOver = false;
     }
     update(deltaTime) {
       if (!this.gameOver) {
@@ -347,7 +312,6 @@ window.onload = function () {
       }
       this.background.update();
       this.background.layer4.update();
-      // fetching data from Player1 instance player
       this.player.update();
       // triggering ammo
       if (this.ammoTimer > this.ammoInterval) {
@@ -385,12 +349,11 @@ window.onload = function () {
       }
     }
 
-    // fetching data from Player1 instance player
     draw(context) {
+      //drawing context to canvas
       this.background.draw(context);
       this.player.draw(context);
       this.ui.draw(context);
-      // drawing each enemy to canvas
       this.enemies.forEach((enemy) => {
         enemy.draw(context);
       });
@@ -423,8 +386,7 @@ window.onload = function () {
 
   // animation loop
   function animate(timeStamp) {
-    // Perform animation logic here
-    // line 163 168 169 , now we know how many miliseconds take for a computer to render one animation frame to run one animation loop
+    // animation logic here
     const deltaTime = timeStamp - lastTimestamp;
     lastTimestamp = timeStamp;
     ctx.clearRect(0, 0, gameScreen.width, gameScreen.height);
