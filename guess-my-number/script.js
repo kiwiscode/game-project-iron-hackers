@@ -1,4 +1,5 @@
 "use strict";
+
 let secretNumber = Math.trunc(Math.random() * 20) + 1;
 let score = 20;
 let highscore = 0;
@@ -23,9 +24,9 @@ document.querySelector(".check").addEventListener("click", function () {
       highscore = score;
       document.querySelector(".highscore").textContent = highscore;
     }
-
-    // When guess is wrong
-  } else if (guess !== secretNumber) {
+  }
+  // When guess is wrong
+  else if (guess !== secretNumber) {
     if (score > 1) {
       displayMessage(guess > secretNumber ? "📈 Too high!" : "📉 Too low!");
       score--;
