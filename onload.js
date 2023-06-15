@@ -70,7 +70,7 @@ window.onload = function () {
     }
   }
   // Oyuncu kontrolü ve özellikleri
-  class Raver {
+  class IronHacker {
     constructor(game) {
       this.game = game;
       this.width = 120;
@@ -297,7 +297,7 @@ window.onload = function () {
       this.height = height;
 
       // fetching data from Player1 class
-      this.player = new Raver(this);
+      this.player = new IronHacker(this);
 
       this.background = new Background(this);
       // fetching data from child of Enemy class (FirstEnemy)
@@ -408,7 +408,7 @@ window.onload = function () {
       );
     }
     restart() {
-      this.player = new Raver(this);
+      this.player = new IronHacker(this);
       this.enemies = [];
       this.enemyTimer = 0;
       this.ammo = 20;
