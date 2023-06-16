@@ -1,3 +1,5 @@
+"use strict";
+
 window.onload = function () {
   const restartBtn = document.querySelector(".restart-game");
   const canvas = document.getElementById("game-screen");
