@@ -119,9 +119,9 @@ h1 {
 }
 
 .change-game {
-  position: relative;
+  position: inherit;
   display: flex;
-  margin-left: 360px;
+  margin-left: 230px;
   top: 2rem;
 }
 
