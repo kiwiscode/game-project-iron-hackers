@@ -6,6 +6,7 @@ const infoScreen = document.querySelector("#info-screen");
 const gameScreen = document.querySelector("#game-screen");
 const canvasContainer = document.getElementById("canvas-container");
 const guessMyNumber = document.querySelector(".guess-my-number");
+const wIronHacker = document.querySelector(".raver-play");
 raverHistory.addEventListener("click", function () {
   gameScreen.style.display = "none";
   infoScreen.style.display = "flex";
@@ -13,7 +14,7 @@ raverHistory.addEventListener("click", function () {
   raverProto.classList.remove("display");
 });
 
-newGameBtn.addEventListener("click", function () {
+wIronHacker.addEventListener("click", function () {
   gameScreen.style.display = "flex";
   infoScreen.style.display = "none";
   raverHistoryLorem.classList.remove("display");
@@ -21,3 +22,7 @@ newGameBtn.addEventListener("click", function () {
   canvasContainer.style.display = "flex";
 });
 //
+
+raverHistory.addEventListener("click", () => {
+  canvasContainer.style.display = "none";
+});

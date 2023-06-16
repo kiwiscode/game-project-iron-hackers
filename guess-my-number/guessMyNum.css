@@ -119,10 +119,10 @@ h1 {
 }
 
 .change-game {
-  position: absolute;
+  position: relative;
   display: flex;
+  margin-left: 360px;
   top: 2rem;
-  margin-left: 37%;
 }
 
 .change-game a {
