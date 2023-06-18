@@ -3,7 +3,7 @@
 window.onload = function () {
   const restartBtn = document.querySelector(".restart-game");
   const canvas = document.getElementById("game-screen");
-  const ctx = gameScreen.getContext("2d");
+  const ctx = canvas.getContext("2d");
   const canvasContainer = document.getElementById("canvas-container");
   canvasContainer.appendChild(canvas);
   ctx.imageSmoothingEnabled = true;
@@ -133,7 +133,7 @@ window.onload = function () {
     constructor(game) {
       this.game = game;
       this.x = this.game.width;
-      this.speedX = Math.random() * -1.5 - 1;
+      this.speedX = -4;
       this.markedForDeletion = false;
       this.lives = 5;
       this.score = this.lives;
@@ -143,7 +143,10 @@ window.onload = function () {
     }
     update() {
       this.x += this.speedX;
-      if (this.x + this.width < 0) this.markedForDeletion = true;
+      if (this.x + this.width < 0) {
+        this.markedForDeletion = true;
+        this.game.score -= 5;
+      }
     }
     draw(context) {
       context.drawImage(
@@ -288,7 +291,7 @@ window.onload = function () {
       this.keys = [];
 
       this.enemyTimer = 0;
-      this.enemyInterval = 3000;
+      this.enemyInterval = 1000;
 
       this.ammo = 20;
       this.maxAmmo = 50;
@@ -384,7 +387,7 @@ window.onload = function () {
     }
   }
   console.log("hello world");
-  const game = new Game(gameScreen.width, gameScreen.height);
+  const game = new Game(canvas.width, canvas.height);
   let lastTimestamp = 0;
 
   // animation loop
@@ -392,7 +395,7 @@ window.onload = function () {
     // animation logic here
     const deltaTime = timeStamp - lastTimestamp;
     lastTimestamp = timeStamp;
-    ctx.clearRect(0, 0, gameScreen.width, gameScreen.height);
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
     game.update(deltaTime);
     game.draw(ctx);
 
