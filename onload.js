@@ -21,7 +21,7 @@ window.onload = function () {
   restartBtn.addEventListener("click", function () {
     game.restart();
   });
-  class IronHacker {
+  class Hacker {
     constructor(game) {
       this.game = game;
       this.width = 120;
@@ -278,7 +278,7 @@ window.onload = function () {
       this.width = width;
       this.height = height;
 
-      this.player = new IronHacker(this);
+      this.player = new Hacker(this);
       this.background = new Background(this);
       this.firstEnemy = new Drone(this);
       this.input = new InputHandler(this);
@@ -373,7 +373,7 @@ window.onload = function () {
       );
     }
     restart() {
-      this.player = new IronHacker(this);
+      this.player = new Hacker(this);
       this.enemies = [];
       this.enemyTimer = 0;
       this.ammo = 20;
