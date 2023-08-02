@@ -1,6 +1,13 @@
 "use strict";
 
 window.onload = function () {
+  const pauseButton = document.querySelector("#pause-button button");
+
+  pauseButton.addEventListener("click", function () {
+    console.log("hello world");
+    game.paused = !game.paused;
+  });
+
   const restartBtn = document.querySelector(".restart-game");
   const canvas = document.getElementById("game-screen");
   const ctx = canvas.getContext("2d");
@@ -20,6 +27,7 @@ window.onload = function () {
 
   restartBtn.addEventListener("click", function () {
     game.restart();
+    game.paused = false;
   });
   class Hacker {
     constructor(game) {
@@ -86,8 +94,12 @@ window.onload = function () {
     constructor(game) {
       this.game = game;
       window.addEventListener("keydown", (e) => {
+        if (e.key === "p" || e.key === "P") {
+          this.pauseGame();
+        }
         if (e.key === "ArrowUp" || e.key === "ArrowDown" || e.key === " ") {
           e.preventDefault();
+          game.paused = false;
         }
         if (
           (e.key === "ArrowUp" || e.key === "ArrowDown") &&
@@ -105,6 +117,9 @@ window.onload = function () {
           this.game.keys.splice(this.game.keys.indexOf(e.key), 1);
         }
       });
+    }
+    pauseGame() {
+      this.game.paused = !this.game.paused;
     }
   }
   class Projectile {
@@ -161,6 +176,7 @@ window.onload = function () {
         this.height
       );
       context.font = "20px Helvetica";
+      context.fillStyle = "red";
       context.fillText(this.lives, this.x, this.y);
     }
   }
@@ -227,49 +243,71 @@ window.onload = function () {
       this.color = "white";
     }
     draw(context) {
-      // save and restore method works together and saving the changes only for this class content not for whole canvas
       context.save();
-      context.shadowOffsetX = 2;
-      context.shadowOffsetY = 2;
-      context.shadowColor = "black";
+      if (this.game.paused) {
+        context.fillStyle = "white";
+        context.shadowOffsetX = 2;
+        context.shadowOffsetY = 2;
+        context.shadowColor = "black";
+        const formattedTime = (this.game.gameTime * 0.001).toFixed(1);
+        context.fillText("Timer :" + formattedTime, 1, 60);
 
-      context.fillStyle = this.color;
-      context.font = this.fontSize + "px" + this.fontFamily;
-
-      context.fillText("Score :" + this.game.score, 1, 15);
-      //ammo
-
-      for (let i = 0; i < this.game.ammo; i++) {
-        context.fillRect(1 + 4 * i, 20, 3, 20);
-      }
-      //timer
-      const formattedTime = (this.game.gameTime * 0.001).toFixed(1);
-      context.fillText("Timer :" + formattedTime, 1, 60);
-      // game over messages
-      if (this.game.gameOver) {
-        context.textAlign = "center";
-        let message1;
-        let message2;
-        if (this.game.score > this.game.winningScore) {
-          message1 = "You Win!";
-          message2 = "Well done!";
-        } else {
-          message1 = "You lose!";
-          message2 = "Try again next time !";
+        context.fillText("Score :" + this.game.score, 1, 15);
+        for (let i = 0; i < this.game.ammo; i++) {
+          context.fillRect(1 + 4 * i, 20, 3, 20);
         }
-        context.font = "75px" + this.fontFamily;
+        // Pause durumunda mesajı ekrana yazdırma
+        context.textAlign = "center";
+        context.font = this.fontSize + "px" + this.fontFamily;
         context.fillText(
-          message1,
+          "Game paused",
           this.game.width * 0.5,
           this.game.height * 0.5 - 40
         );
+      } else if (!this.game.paused) {
+        // save and restore method works together and saving the changes only for this class content not for whole canvas
 
-        context.font = "50px" + this.fontFamily;
-        context.fillText(
-          message2,
-          this.game.width * 0.5,
-          this.game.height * 0.5 + 40
-        );
+        context.shadowOffsetX = 2;
+        context.shadowOffsetY = 2;
+        context.shadowColor = "black";
+
+        context.fillStyle = this.color;
+        context.font = this.fontSize + "px" + this.fontFamily;
+
+        context.fillText("Score :" + this.game.score, 1, 15);
+        //ammo
+        for (let i = 0; i < this.game.ammo; i++) {
+          context.fillRect(1 + 4 * i, 20, 3, 20);
+        }
+        //timer
+        const formattedTime = (this.game.gameTime * 0.001).toFixed(1);
+        context.fillText("Timer :" + formattedTime, 1, 60);
+        // game over messages
+        if (this.game.gameOver) {
+          context.textAlign = "center";
+          let message1;
+          let message2;
+          if (this.game.score > this.game.winningScore) {
+            message1 = "You Win!";
+            message2 = "Well done!";
+          } else {
+            message1 = "You lose!";
+            message2 = "Try again next time !";
+          }
+          context.font = "75px" + this.fontFamily;
+          context.fillText(
+            message1,
+            this.game.width * 0.5,
+            this.game.height * 0.5 - 40
+          );
+
+          context.font = "50px" + this.fontFamily;
+          context.fillText(
+            message2,
+            this.game.width * 0.5,
+            this.game.height * 0.5 + 40
+          );
+        }
       }
       context.restore();
     }
@@ -307,50 +345,54 @@ window.onload = function () {
 
       this.speed = 1;
       this.gameOver = false;
+
+      this.paused = false;
     }
     update(deltaTime) {
-      if (!this.gameOver) {
-        this.gameTime += deltaTime;
-      }
-      if (this.gameTime > this.timeLimit) {
-        this.gameOver = true;
-      }
-      this.background.update();
-      this.background.layer4.update();
-      this.player.update();
-      // triggering ammo
-      if (this.ammoTimer > this.ammoInterval) {
-        if (this.ammo < this.maxAmmo) this.ammo++;
-        this.ammoTimer = 0;
-      } else {
-        this.ammoTimer += deltaTime;
-      }
-      this.enemies.forEach((enemy) => {
-        enemy.update();
-        if (this.checkCollision(this.player, enemy)) {
-          enemy.markedForDeletion = true;
-          this.score -= 5;
+      if (!this.paused) {
+        if (!this.gameOver) {
+          this.gameTime += deltaTime;
         }
-        this.player.projectiles.forEach((projectile) => {
-          if (this.checkCollision(projectile, enemy)) {
-            enemy.lives--;
-            projectile.markedForDeletion = true;
-            if (enemy.lives === 0) {
-              enemy.markedForDeletion = true;
-              if (!this.gameOver) this.score += 10;
-              if (this.score > this.winningScore) {
-                this.gameOver = true;
+        if (this.gameTime > this.timeLimit) {
+          this.gameOver = true;
+        }
+        this.background.update();
+        this.background.layer4.update();
+        this.player.update();
+        // triggering ammo
+        if (this.ammoTimer > this.ammoInterval) {
+          if (this.ammo < this.maxAmmo) this.ammo++;
+          this.ammoTimer = 0;
+        } else {
+          this.ammoTimer += deltaTime;
+        }
+        this.enemies.forEach((enemy) => {
+          enemy.update();
+          if (this.checkCollision(this.player, enemy)) {
+            enemy.markedForDeletion = true;
+            this.score -= 5;
+          }
+          this.player.projectiles.forEach((projectile) => {
+            if (this.checkCollision(projectile, enemy)) {
+              enemy.lives--;
+              projectile.markedForDeletion = true;
+              if (enemy.lives === 0) {
+                enemy.markedForDeletion = true;
+                if (!this.gameOver) this.score += 10;
+                if (this.score > this.winningScore) {
+                  this.gameOver = true;
+                }
               }
             }
-          }
+          });
         });
-      });
-      this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion);
-      if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
-        this.addEnemy();
-        this.enemyTimer = 0;
-      } else {
-        this.enemyTimer += deltaTime;
+        this.enemies = this.enemies.filter((enemy) => !enemy.markedForDeletion);
+        if (this.enemyTimer > this.enemyInterval && !this.gameOver) {
+          this.addEnemy();
+          this.enemyTimer = 0;
+        } else {
+          this.enemyTimer += deltaTime;
+        }
       }
     }
 
@@ -384,6 +426,9 @@ window.onload = function () {
       this.gameOver = false;
       this.score = 0;
       this.gameTime = 0;
+    }
+    togglePause() {
+      this.paused = !this.paused;
     }
   }
   console.log("hello world");

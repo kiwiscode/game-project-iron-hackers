@@ -52,12 +52,3 @@ During the development of Hacker's Adventures, I encountered several challenges 
 4. <h3>Responsive Design</h3><p>Ensuring that the game interface was visually appealing and functioned well across various screen sizes and devices required meticulous attention to CSS and flexbox layouts.</p>
 
 Overcoming these challenges has been a valuable learning experience, allowing me to enhance my programming skills and create an engaging gaming experience in Hacker's Adventures.
-
-<!-- <h1>Roadmap</h1>
-Here are the planned features and improvements for the future development of Hacker's Adventures:
-<h3>3D Animated Characters</h3><p>Introduce three additional 3D animated characters alongside the Hacker. These characters will have their own unique abilities and backstories, visible in the character history screen.</p>
-<h3>Audio Integration</h3><p>Implement sound effects such as projectile sounds and enemy hit particles to enhance the overall gaming experience. Additionally, add background music to create a more immersive atmosphere.</p>
-<h3>Expanded Enemy Pool and Power-ups</h3><p>Increase the variety and challenge by expanding the enemy pool with different enemy types, behaviors, and abilities. Add power-ups and special events to provide exciting gameplay moments and enhance player engagement.</p>
-<h3>Player Character Pool</h3><p>Allow players to choose from multiple player characters, each with their own strengths and weaknesses. Expand the pool of available characters to offer more diverse gameplay options.</p>
-
-These planned additions will elevate Hackers Adventures to new heights, offering an even more immersive and thrilling experience for players. -->
