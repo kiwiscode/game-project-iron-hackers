@@ -2,8 +2,13 @@
 
 window.onload = function () {
   const pauseButton = document.querySelector("#pause-button button");
+  const pauseWMusic = document.querySelector(".char-story");
 
   pauseButton.addEventListener("click", function () {
+    game.paused = !game.paused;
+  });
+
+  pauseWMusic.addEventListener("click", () => {
     game.paused = !game.paused;
   });
 
@@ -28,7 +33,7 @@ window.onload = function () {
     game.restart();
     game.paused = false;
   });
-  class Hacker {
+  class Player {
     constructor(game) {
       this.game = game;
       this.width = 120;
@@ -305,7 +310,7 @@ window.onload = function () {
       this.width = width;
       this.height = height;
 
-      this.player = new Hacker(this);
+      this.player = new Player(this);
       this.background = new Background(this);
       this.firstEnemy = new Drone(this);
       this.input = new InputHandler(this);
@@ -400,7 +405,7 @@ window.onload = function () {
       );
     }
     restart() {
-      this.player = new Hacker(this);
+      this.player = new Player(this);
       this.enemies = [];
       this.enemyTimer = 0;
       this.ammo = 20;
