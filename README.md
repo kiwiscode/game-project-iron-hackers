@@ -27,22 +27,16 @@ Guess My Number is a number guessing game. The computer selects a random number,
 
 1. Clone or download the project files to your computer.
 
-```bash
-git clone <repository_url>
-
+git clone https://github.com/kiwiscode/my-game-project.git
 
 With this update, users can easily access the games by selecting their preferred game from the navbar on the `index.html` page after cloning the project. As always, feel free to customize the instructions to match your project's structure and layout. Good luck with your game project!
-
 
 ## Technologies Used
 
 The "Guess My Number" game is built using the following technologies:
 
-- **HTML:** Used for structuring the game interface.
-- **CSS:** Utilized CSS and flexbox for layout and styling.
-- **JavaScript:** Implemented DOM manipulation techniques for interactivity, game logic, and modular code organization.
-
+- HTML: Used for structuring the game interface.
+- CSS: Utilized CSS and flexbox for layout and styling.
+- JavaScript: Implemented DOM manipulation techniques for interactivity, game logic, and modular code organization.
 
 Wishing you a fun and educational experience with this project!
-
-```
