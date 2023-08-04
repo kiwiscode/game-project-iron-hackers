@@ -163,7 +163,7 @@ window.onload = function () {
     }
     update() {
       this.x += this.speedX;
-      if (this.x + this.width < 0) {
+      if (this.x + this.width < 0 && !this.game.gameOver) {
         this.markedForDeletion = true;
         this.game.score -= 5;
       }
@@ -357,7 +357,7 @@ window.onload = function () {
         }
         this.enemies.forEach((enemy) => {
           enemy.update();
-          if (this.checkCollision(this.player, enemy)) {
+          if (this.checkCollision(this.player, enemy) && !this.gameOver) {
             enemy.markedForDeletion = true;
             this.score -= 5;
           }
