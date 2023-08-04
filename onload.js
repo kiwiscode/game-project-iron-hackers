@@ -4,7 +4,6 @@ window.onload = function () {
   const pauseButton = document.querySelector("#pause-button button");
 
   pauseButton.addEventListener("click", function () {
-    console.log("hello world");
     game.paused = !game.paused;
   });
 
@@ -95,8 +94,6 @@ window.onload = function () {
   }
 
   class InputHandler {
-    // -1 arrow up
-    // 1 arrow down
     constructor(game) {
       this.game = game;
       window.addEventListener("keydown", (e) => {
@@ -113,13 +110,11 @@ window.onload = function () {
         ) {
           this.game.keys.push(e.key);
         } else if (e.key === " ") {
-          // activating projectile hit
           this.game.player.shootTop();
         }
       });
       window.addEventListener("keyup", (e) => {
         if (this.game.keys.indexOf(e.key) !== -1) {
-          // removing last element in the array with splice method
           this.game.keys.splice(this.game.keys.indexOf(e.key), 1);
         }
       });
@@ -140,7 +135,6 @@ window.onload = function () {
     }
 
     update() {
-      // arranging the projectile speed and visibility range
       this.x += this.speed;
       if (this.x > this.game.width * 0.9) this.markedForDeletion = true;
     }
@@ -192,7 +186,6 @@ window.onload = function () {
       super(game);
       this.width = 110;
       this.height = 95;
-      // this is for top to bottom movements of enemy
       this.y = Math.random() * (this.game.height * 0.9 - this.height);
       this.image = document.getElementById("enemy");
     }
@@ -233,7 +226,6 @@ window.onload = function () {
     }
   }
 
-  // score timer other infos
   class UI {
     constructor(game) {
       this.game = game;
@@ -255,7 +247,6 @@ window.onload = function () {
         for (let i = 0; i < this.game.ammo; i++) {
           context.fillRect(1 + 4 * i, 20, 3, 20);
         }
-        // Pause durumunda mesajı ekrana yazdırma
         context.textAlign = "center";
         context.font = this.fontSize + "px" + this.fontFamily;
         context.fillText(
@@ -264,8 +255,6 @@ window.onload = function () {
           this.game.height * 0.5 - 40
         );
       } else if (!this.game.paused) {
-        // save and restore method works together and saving the changes only for this class content not for whole canvas
-
         context.shadowOffsetX = 2;
         context.shadowOffsetY = 2;
         context.shadowColor = "black";
@@ -274,14 +263,13 @@ window.onload = function () {
         context.font = this.fontSize + "px" + this.fontFamily;
 
         context.fillText("Score :" + this.game.score, 1, 15);
-        //ammo
+
         for (let i = 0; i < this.game.ammo; i++) {
           context.fillRect(1 + 4 * i, 20, 3, 20);
         }
-        //timer
+
         const formattedTime = (this.game.gameTime * 0.001).toFixed(1);
         context.fillText("Timer :" + formattedTime, 1, 60);
-        // game over messages
         if (this.game.gameOver) {
           context.textAlign = "center";
           let message1;
@@ -312,7 +300,6 @@ window.onload = function () {
     }
   }
 
-  // game logic
   class Game {
     constructor(width, height) {
       this.width = width;
@@ -357,7 +344,6 @@ window.onload = function () {
         }
         this.background.update();
         this.player.update();
-        // triggering ammo
         if (this.ammoTimer > this.ammoInterval) {
           if (this.ammo < this.maxAmmo) this.ammo++;
           this.ammoTimer = 0;
@@ -395,7 +381,6 @@ window.onload = function () {
     }
 
     draw(context) {
-      //drawing context to canvas
       this.background.draw(context);
       this.player.draw(context);
       this.ui.draw(context);
@@ -428,23 +413,19 @@ window.onload = function () {
       this.paused = !this.paused;
     }
   }
-  console.log("hello world");
+
   const game = new Game(canvas.width, canvas.height);
   let lastTimestamp = 0;
 
-  // animation loop
   function animate(timeStamp) {
-    // animation logic here
     const deltaTime = timeStamp - lastTimestamp;
     lastTimestamp = timeStamp;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     game.update(deltaTime);
     game.draw(ctx);
 
-    // schedule the next animation frame
     window.requestAnimationFrame(animate);
   }
 
-  // start the animation loop
   window.requestAnimationFrame(animate(0));
 };
