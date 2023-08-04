@@ -80,8 +80,14 @@ window.onload = function () {
 
     shootTop() {
       if (this.game.ammo > 0) {
+        const centerX = this.x + this.width / 2;
+        const centerY = this.y + this.height / 2;
+
+        const offsetX = 80;
+        const offsetY = 0;
+
         this.projectiles.push(
-          new Projectile(this.game, this.x + 80, this.y + 30)
+          new Projectile(this.game, centerX + offsetX, centerY + offsetY)
         );
         this.game.ammo--;
       }
@@ -214,17 +220,10 @@ window.onload = function () {
   class Background {
     constructor(game) {
       this.game = game;
-      this.image1 = document.getElementById("layer1");
-      this.image2 = document.getElementById("layer2");
-      this.image3 = document.getElementById("layer3");
-      this.image4 = document.getElementById("layer4");
 
-      this.layer1 = new Layer(this.game, this.image1, 0.2);
-      this.layer2 = new Layer(this.game, this.image2, 0.4);
-      this.layer3 = new Layer(this.game, this.image3, 1);
-      this.layer4 = new Layer(this.game, this.image4, 3);
-
-      this.layers = [this.layer1, this.layer2, this.layer3];
+      this.image1 = document.getElementById("layer");
+      this.layer = new Layer(this.game, this.image1, 1);
+      this.layers = [this.layer];
     }
     update() {
       this.layers.forEach((layer) => layer.update());
@@ -357,7 +356,6 @@ window.onload = function () {
           this.gameOver = true;
         }
         this.background.update();
-        this.background.layer4.update();
         this.player.update();
         // triggering ammo
         if (this.ammoTimer > this.ammoInterval) {
@@ -404,7 +402,6 @@ window.onload = function () {
       this.enemies.forEach((enemy) => {
         enemy.draw(context);
       });
-      this.background.layer4.draw(context);
     }
     addEnemy() {
       this.enemies.push(new Drone(this));
