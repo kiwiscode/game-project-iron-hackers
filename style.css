@@ -1,0 +1,175 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "VT323", monospace;
+}
+
+#nav-list {
+  display: flex;
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1;
+}
+
+#nav-list ul {
+  list-style: none;
+}
+
+#nav-list ul li {
+  float: left;
+  width: 200px;
+  height: 40px;
+  opacity: 0.9;
+  text-align: center;
+  font-size: 25px;
+}
+
+#nav-list ul li a {
+  text-decoration: none;
+  color: black;
+  display: block;
+}
+
+#nav-list ul li a:hover {
+  color: cornflowerblue;
+}
+
+#nav-list ul li ul li {
+  display: none;
+}
+
+#nav-list ul li:hover ul li {
+  display: block;
+}
+
+#info-screen {
+  width: 90%;
+  margin: 20px;
+  margin-top: 20px;
+  flex-direction: row-reverse;
+  justify-content: center;
+}
+
+.display {
+  display: none;
+}
+
+.history {
+  width: 300px;
+  margin: 10px;
+  line-height: 30px;
+}
+
+.history h1 {
+  margin-top: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.history li {
+  margin-left: 0px;
+  text-decoration: none;
+  list-style: none;
+  margin-top: 10px;
+  line-height: 30px;
+}
+
+.history li a {
+  text-decoration: none;
+  color: black;
+  display: flex;
+  align-items: center;
+  font-family: "Press Start 2P", monospace;
+  font-size: 14px;
+  gap: 5px;
+}
+
+.history audio {
+  background-color: cornflowerblue;
+  border: 2px solid black;
+  border-radius: 3px;
+  padding: 5px;
+}
+
+.history audio::-webkit-media-controls-panel {
+  background-color: cornflowerblue;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.history audio::-webkit-media-controls-play-button {
+  background-color: lightblue;
+  border-radius: 50%;
+}
+
+.history audio::-webkit-media-controls-current-time-display {
+  color: #333;
+}
+
+audio {
+  display: block;
+}
+
+#game-screen {
+  width: 100vw;
+  height: 100vh;
+  border: 2px solid black;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+audio::-webkit-media-controls-panel {
+  background-color: cornflowerblue;
+}
+
+audio::-webkit-media-controls-play-button {
+  background-color: lightblue;
+  border-radius: 50%;
+}
+
+audio::-webkit-media-controls-current-time-display {
+  color: #333;
+}
+
+audio {
+  display: block;
+}
+
+#layer,
+#player,
+#enemy {
+  display: none;
+}
+
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#pause-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+#pause-button button {
+  font-size: 24px;
+  padding: 10px 20px;
+  background-color: #ccc;
+  border: none;
+  cursor: pointer;
+}
+
+#pause-button button:hover {
+  background-color: #ddd;
+}
+
+#pause-button {
+  display: none;
+}

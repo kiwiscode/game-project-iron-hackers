@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Space Strike</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=VT323&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" type="image/x-icon" href="./game-assets/logo.png" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <div id="pause-button">
+      <button>II</button>
+    </div>
+    <div>
+      <nav id="nav-list">
+        <ul>
+          <li>
+            <a href="#" class="new-game">New Game</a>
+            <ul>
+              <li><a href="#" class="play display">Space Strike</a></li>
+            </ul>
+          </li>
+          <li>
+            <a href="#" class="char-story"> Music</a>
+          </li>
+          <li><a href="#" class="restart-game">Restart Game</a></li>
+          <li>
+            <a
+              href="./guess-my-number/guessMyNumber.html"
+              class="guess-my-number"
+              >Guess My Number</a
+            >
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <section id="info-screen">
+      <div>
+        <div class="history">
+          <div>
+            <h1>Playlist</h1>
+            <ul>
+              <li>
+                <a href="">SNG1</a
+                ><audio controls>
+                  <source src="./audio/Beastie Boys - Intergalactic.mp3" />
+                </audio>
+              </li>
+              <li>
+                <a href="">SNG2</a
+                ><audio controls>
+                  <source src="./audio/The Who - Baba O'riley.mp3" />
+                </audio>
+              </li>
+              <li>
+                <a href="">SNG3</a
+                ><audio controls>
+                  <source
+                    src="./audio/Queen – Bohemian Rhapsody (Official Video Remastered).mp3"
+                  />
+                </audio>
+              </li>
+              <li>
+                <a href="">SNG4</a
+                ><audio controls>
+                  <source
+                    src="./audio/Daft Punk - Harder, Better, Faster, Stronger (Official Video).mp3"
+                  />
+                </audio>
+              </li>
+              <li>
+                <a href="">SNG5</a
+                ><audio controls>
+                  <source src="./audio/Kanye West - Stronger.mp3" />
+                </audio>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <img id="player" src="./game-assets/sci_fi.png" alt="" />
+
+    <img id="enemy" src="./game-assets/drone.png" alt="" />
+
+    <img
+      id="layer"
+      src="./game-assets/background-layers.png"
+      alt=""
+    />
+
+    <div id="canvas-container">
+      <canvas id="game-screen"> </canvas
+    </div>
+
+    <script src="./onload.js"></script>
+    <script src="./script.js"></script>
+  </body>
+</html>
