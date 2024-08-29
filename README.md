@@ -33,8 +33,6 @@ With this update, users can easily access the games by selecting their preferred
 
 ## Technologies Used
 
-The "Guess My Number" game is built using the following technologies:
-
 - HTML: Used for structuring the game interface.
 - JavaScript: Implemented DOM manipulation techniques for interactivity, game logic, and modular code organization.
 
