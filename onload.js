@@ -43,6 +43,11 @@ window.onload = function () {
     game.restart();
     game.paused = false;
   });
+
+  newGameBtn.addEventListener("click", function () {
+    game.restart();
+    game.paused = false;
+  });
   class Player {
     constructor(game) {
       this.game = game;
