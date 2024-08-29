@@ -3,7 +3,6 @@
 * {
   margin: 0;
   padding: 0;
-  /* box-sizing: inherit; */
 }
 
 html {
@@ -14,8 +13,7 @@ html {
 body {
   font-family: "Press Start 2P", sans-serif;
   color: #eee;
-  background-color: #222;
-  /* background-color: #60b347; */
+  background-color: #1c1c1c !important;
 }
 
 /* LAYOUT */

@@ -1,33 +1,43 @@
 "use strict";
 
 window.onload = function () {
+  const newGameBtn = document.querySelector(".new-game");
+  const guessMyNumber = document.querySelector(".guess-my-number");
+  const sunIcon = document.querySelector(".sun-icon");
+  const playSpaceStrikeBtn = document.querySelector(".play");
+  const parentHomeBtn = document.querySelector(".home-btn-parent");
+  const homeBtn = document.querySelector(".home-btn");
+
   const pauseButton = document.querySelector("#pause-button button");
-  const pauseWMusic = document.querySelector(".char-story");
 
   pauseButton.addEventListener("click", function () {
     game.paused = !game.paused;
   });
 
-  pauseWMusic.addEventListener("click", () => {
-    game.paused = !game.paused;
-  });
-
+  localStorage.setItem("theme", "dark-theme");
+  sunIcon.style.display = "none";
+  document.body.style.backgroundColor = "#1c1c1c";
+  newGameBtn.style.color = "white";
+  guessMyNumber.style.color = "white";
+  playSpaceStrikeBtn.style.color = "white";
+  homeBtn.style.color = "white";
+  parentHomeBtn.style.display = "none";
   const restartBtn = document.querySelector(".restart-game");
+  const parentRestartBtn = document.querySelector(".parent-restart-game-btn");
   const canvas = document.getElementById("game-screen");
   const ctx = canvas.getContext("2d");
   const canvasContainer = document.getElementById("canvas-container");
   canvasContainer.appendChild(canvas);
   ctx.imageSmoothingEnabled = true;
 
-  const infoScreen = document.getElementById("info-screen");
-
   canvasContainer.style.display = "none";
   canvas.style.display = "none";
-  infoScreen.style.display = "flex";
 
   canvas.width = 1000;
   canvas.height = 500;
   canvas.style.backgroundColor = "white";
+
+  parentRestartBtn.style.display = "none";
 
   restartBtn.addEventListener("click", function () {
     game.restart();
@@ -46,6 +56,7 @@ window.onload = function () {
       this.maxSpeed = 4;
       this.projectiles = [];
       this.image = document.getElementById("player");
+      this.shootSound = new Audio("./game-assets/laser.wav");
     }
     update() {
       if (this.game.keys.includes("ArrowUp")) {
@@ -94,6 +105,9 @@ window.onload = function () {
           new Projectile(this.game, centerX + offsetX, centerY + offsetY)
         );
         this.game.ammo--;
+
+        this.shootSound.currentTime = 0; // Ses efektini sıfırdan başlatır
+        this.shootSound.play(); // Ses efektini oynatır
       }
     }
   }
@@ -133,10 +147,12 @@ window.onload = function () {
       this.game = game;
       this.x = x;
       this.y = y;
-      this.width = 10;
-      this.height = 3;
+      this.width = 28;
+      this.height = 10;
       this.speed = 9;
       this.markedForDeletion = false;
+      this.image = new Image();
+      this.image.src = "./game-assets/projectile.png";
     }
 
     update() {
@@ -144,8 +160,7 @@ window.onload = function () {
       if (this.x > this.game.width * 0.9) this.markedForDeletion = true;
     }
     draw(context) {
-      context.fillStyle = "yellow";
-      context.fillRect(this.x, this.y, this.width, this.height);
+      context.drawImage(this.image, this.x, this.y, this.width, this.height);
     }
   }
 

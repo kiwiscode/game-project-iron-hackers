@@ -1,40 +1,50 @@
 * {
   margin: 0;
   padding: 0;
-  font-family: "VT323", monospace;
+  font-family: "VT323", monospace !important;
+  transition: background-color 0.2s ease;
+}
+
+.swap-rotate {
+  position: absolute;
+  right: 15px;
+  top: 15px;
 }
 
 #nav-list {
   display: flex;
   justify-content: center;
+  align-items: center;
   position: absolute;
-  top: 0;
-  left: 0;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
   width: 100%;
-  z-index: 1;
 }
 
 #nav-list ul {
   list-style: none;
+  display: flex;
+  flex-direction: row;
+  gap: 36px;
 }
 
 #nav-list ul li {
   float: left;
-  width: 200px;
-  height: 40px;
   opacity: 0.9;
-  text-align: center;
   font-size: 25px;
+  min-width: 200px;
+  text-align: center;
 }
 
 #nav-list ul li a {
   text-decoration: none;
-  color: black;
   display: block;
 }
 
 #nav-list ul li a:hover {
-  color: cornflowerblue;
+  color: cornflowerblue !important;
+  transition: color 0.2s ease;
 }
 
 #nav-list ul li ul li {
@@ -45,68 +55,9 @@
   display: block;
 }
 
-#info-screen {
-  width: 90%;
-  margin: 20px;
-  margin-top: 20px;
-  flex-direction: row-reverse;
-  justify-content: center;
-}
-
-.display {
-  display: none;
-}
-
-.history {
-  width: 300px;
-  margin: 10px;
-  line-height: 30px;
-}
-
-.history h1 {
-  margin-top: 10px;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-.history li {
-  margin-left: 0px;
-  text-decoration: none;
-  list-style: none;
-  margin-top: 10px;
-  line-height: 30px;
-}
-
-.history li a {
-  text-decoration: none;
-  color: black;
-  display: flex;
-  align-items: center;
-  font-family: "Press Start 2P", monospace;
-  font-size: 14px;
-  gap: 5px;
-}
-
-.history audio {
-  background-color: cornflowerblue;
-  border: 2px solid black;
-  border-radius: 3px;
-  padding: 5px;
-}
-
-.history audio::-webkit-media-controls-panel {
-  background-color: cornflowerblue;
-  border: 2px solid black;
-  border-radius: 5px;
-}
-
-.history audio::-webkit-media-controls-play-button {
-  background-color: lightblue;
-  border-radius: 50%;
-}
-
-.history audio::-webkit-media-controls-current-time-display {
-  color: #333;
+#pause-button button:hover {
+  background-color: cornflowerblue !important;
+  transition: background-color 0.2s ease !important;
 }
 
 audio {
@@ -168,6 +119,7 @@ audio {
 
 #pause-button button:hover {
   background-color: #ddd;
+  transition: background-color 0.2s ease;
 }
 
 #pause-button {

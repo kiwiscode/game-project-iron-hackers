@@ -17,22 +17,57 @@
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
+    <label class="swap swap-rotate">
+      <!-- sun icon -->
+      <svg
+      style="cursor: pointer;"
+      width="20px"
+      height="20px"
+      fill="white"
+        class="sun-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24">
+        <path
+          d="M5.64,17l-.71.71a1,1,0,0,0,0,1.41,1,1,0,0,0,1.41,0l.71-.71A1,1,0,0,0,5.64,17ZM5,12a1,1,0,0,0-1-1H3a1,1,0,0,0,0,2H4A1,1,0,0,0,5,12Zm7-7a1,1,0,0,0,1-1V3a1,1,0,0,0-2,0V4A1,1,0,0,0,12,5ZM5.64,7.05a1,1,0,0,0,.7.29,1,1,0,0,0,.71-.29,1,1,0,0,0,0-1.41l-.71-.71A1,1,0,0,0,4.93,6.34Zm12,.29a1,1,0,0,0,.7-.29l.71-.71a1,1,0,1,0-1.41-1.41L17,5.64a1,1,0,0,0,0,1.41A1,1,0,0,0,17.66,7.34ZM21,11H20a1,1,0,0,0,0,2h1a1,1,0,0,0,0-2Zm-9,8a1,1,0,0,0-1,1v1a1,1,0,0,0,2,0V20A1,1,0,0,0,12,19ZM18.36,17A1,1,0,0,0,17,18.36l.71.71a1,1,0,0,0,1.41,0,1,1,0,0,0,0-1.41ZM12,6.5A5.5,5.5,0,1,0,17.5,12,5.51,5.51,0,0,0,12,6.5Zm0,9A3.5,3.5,0,1,1,15.5,12,3.5,3.5,0,0,1,12,15.5Z" />
+      </svg>
+    
+      <!-- moon icon -->
+      <svg 
+      style="cursor: pointer;"
+      width="20px"
+      height="20px"
+      fill="white"
+        class="moon-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24">
+        <path
+          d="M21.64,13a1,1,0,0,0-1.05-.14,8.05,8.05,0,0,1-3.37.73A8.15,8.15,0,0,1,9.08,5.49a8.59,8.59,0,0,1,.25-2A1,1,0,0,0,8,2.36,10.14,10.14,0,1,0,22,14.05,1,1,0,0,0,21.64,13Zm-9.5,6.69A8.14,8.14,0,0,1,7.08,5.22v.27A10.15,10.15,0,0,0,17.22,15.63a9.79,9.79,0,0,0,2.1-.22A8.11,8.11,0,0,1,12.14,19.73Z" />
+      </svg>
+    </label>
+    <div
+                      
+                    style="pointer-events: none; font-size: 15px; position: absolute; bottom: 15px; left: 15px;"
+                    >
+                      <div
+                      style="color: rgb(112,112, 112); font-size: 15px; line-height: 20px; flex-wrap: wrap; cursor: default;"
+                      >
+                        © 2024 Space Strike v2.0 | Designed & Developed by Aykut Kav
+                      </div>
+                    </div>
     <div id="pause-button">
-      <button>II</button>
+      <button style="border-radius: 50px; height: 50px; width: 50px; text-align: center; display: flex; justify-content: center; align-items: center; opacity: 0.8;">||</button>
+     
     </div>
     <div>
       <nav id="nav-list">
         <ul>
-          <li>
-            <a href="#" class="new-game">New Game</a>
-            <ul>
-              <li><a href="#" class="play display">Space Strike</a></li>
-            </ul>
+          <li class="home-btn-parent">
+            <a href="#" class="home-btn">Home</a>
           </li>
-          <li>
-            <a href="#" class="char-story"> Music</a>
+          <li class="parent-new-game-btn">
+            <a href="#" class="play new-game">New Game</a>
           </li>
-          <li><a href="#" class="restart-game">Restart Game</a></li>
+          <li class="parent-restart-game-btn"><a href="#" class="restart-game">Restart Game</a></li>
           <li>
             <a
               href="./guess-my-number/guessMyNumber.html"
@@ -44,52 +79,9 @@
       </nav>
     </div>
 
-    <section id="info-screen">
-      <div>
-        <div class="history">
-          <div>
-            <h1>Playlist</h1>
-            <ul>
-              <li>
-                <a href="">SNG1</a
-                ><audio controls>
-                  <source src="./audio/Beastie Boys - Intergalactic.mp3" />
-                </audio>
-              </li>
-              <li>
-                <a href="">SNG2</a
-                ><audio controls>
-                  <source src="./audio/The Who - Baba O'riley.mp3" />
-                </audio>
-              </li>
-              <li>
-                <a href="">SNG3</a
-                ><audio controls>
-                  <source
-                    src="./audio/Queen – Bohemian Rhapsody (Official Video Remastered).mp3"
-                  />
-                </audio>
-              </li>
-              <li>
-                <a href="">SNG4</a
-                ><audio controls>
-                  <source
-                    src="./audio/Daft Punk - Harder, Better, Faster, Stronger (Official Video).mp3"
-                  />
-                </audio>
-              </li>
-              <li>
-                <a href="">SNG5</a
-                ><audio controls>
-                  <source src="./audio/Kanye West - Stronger.mp3" />
-                </audio>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     <img id="player" src="./game-assets/sci_fi.png" alt="" />
+
 
     <img id="enemy" src="./game-assets/drone.png" alt="" />
 
