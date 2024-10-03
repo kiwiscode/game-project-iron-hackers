@@ -8,6 +8,16 @@ window.onload = function () {
   const parentHomeBtn = document.querySelector(".home-btn-parent");
   const homeBtn = document.querySelector(".home-btn");
 
+  // İlk başta pencere genişliğini almak
+  let currentWidth = window.innerWidth;
+  console.log("Başlangıç genişliği:", currentWidth);
+
+  // Pencere boyutu değiştiğinde genişliği güncellemek için event listener
+  window.addEventListener("resize", () => {
+    currentWidth = window.innerWidth;
+    console.log("Güncellenen genişlik:", currentWidth);
+  });
+
   const pauseButton = document.querySelector("#pause-button button");
 
   pauseButton.addEventListener("click", function () {
@@ -173,7 +183,7 @@ window.onload = function () {
     constructor(game) {
       this.game = game;
       this.x = this.game.width;
-      this.speedX = -4;
+      this.speedX = currentWidth > 1440 ? -2.75 : -4;
       this.markedForDeletion = false;
       this.lives = 5;
       this.score = this.lives;
