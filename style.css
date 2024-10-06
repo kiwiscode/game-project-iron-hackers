@@ -133,3 +133,7 @@ audio {
 #pause-button {
   display: none;
 }
+
+.kiwisc0de--:hover {
+  color: #cb450c !important;
+}
